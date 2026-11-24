@@ -1,10 +1,11 @@
-# Keeps Formula/nimbo.rb at nimbo's latest release: every hour, and on demand. The formula is the one attached to the
-# release, taken only if it matches the release's SHA256SUMS.
+# A safety net: nimbo's own release workflow pushes the formula here when a release is published. Once a day, and on
+# demand, this checks Formula/nimbo.rb is at nimbo's latest release and repairs it if a push was missed. The formula is
+# the one attached to the release, taken only if it matches the release's SHA256SUMS.
 name: update
 
 on:
   schedule:
-    - cron: "17 * * * *"
+    - cron: "17 5 * * *"
   workflow_dispatch:
 
 permissions:
