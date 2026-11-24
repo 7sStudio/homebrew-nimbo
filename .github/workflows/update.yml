@@ -1,0 +1,40 @@
+# Keeps Formula/nimbo.rb at nimbo's latest release: every hour, and on demand. The formula is the one attached to the
+# release, taken only if it matches the release's SHA256SUMS.
+name: update
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Formula of the latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag=$(gh api repos/7sStudio/nimbo/releases/latest --jq .tag_name)
+          case "$tag" in v[0-9]*.[0-9]*.[0-9]*) ;; *) echo "unexpected tag: $tag" >&2; exit 1 ;; esac
+          mkdir -p "$RUNNER_TEMP/release"
+          gh release download "$tag" --repo 7sStudio/nimbo --pattern nimbo.rb --pattern SHA256SUMS --dir "$RUNNER_TEMP/release"
+          (cd "$RUNNER_TEMP/release" && grep -E '  nimbo\.rb$' SHA256SUMS | sha256sum --check --strict -)
+          grep -q "releases/download/${tag}/" "$RUNNER_TEMP/release/nimbo.rb"
+          ruby -c "$RUNNER_TEMP/release/nimbo.rb"
+          cp "$RUNNER_TEMP/release/nimbo.rb" Formula/nimbo.rb
+          if git diff --quiet; then echo "already at ${tag}"; exit 0; fi
+          git config user.name 7sStudio
+          git config user.email "43743206+7sStudio@users.noreply.github.com"
+          git commit -qam "nimbo ${tag#v}"
+          git push -q origin HEAD:main
+          echo "updated to ${tag}"

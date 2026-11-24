@@ -6,4 +6,4 @@
 brew install 7sStudio/nimbo/nimbo
 ```
 
-Update with `brew upgrade nimbo`, remove with `brew uninstall nimbo`. The formula in `Formula/nimbo.rb` is generated from each nimbo release; do not edit it by hand.
+Update with `brew upgrade nimbo`, remove with `brew uninstall nimbo`. The formula in `Formula/nimbo.rb` is the one generated with each nimbo release: a workflow here copies it within the hour of a release, after checking it against the release's checksums. Do not edit it by hand.
