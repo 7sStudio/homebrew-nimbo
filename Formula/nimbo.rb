@@ -7,23 +7,23 @@ class Nimbo < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/7sStudio/nimbo/releases/download/v0.1.4/nimbo-0.1.4-darwin-arm64.tar.gz"
-      sha256 "37dddab64b093611549288c1a40cd2787c5c50592e99cbb732cafda9c4fcae11"
+      url "https://github.com/7sStudio/nimbo/releases/download/v0.1.5/nimbo-0.1.5-darwin-arm64.tar.gz"
+      sha256 "e0d0ff151be7712abe54a28ce0fd126d9ef551c0a3a16072e5b0e3a40e7d7fec"
     end
     on_intel do
-      url "https://github.com/7sStudio/nimbo/releases/download/v0.1.4/nimbo-0.1.4-darwin-x64.tar.gz"
-      sha256 "93455a34f15d4f9d47456ab5b9e6369e28826a0d7c2a7866fc352eb5f3e3e2ca"
+      url "https://github.com/7sStudio/nimbo/releases/download/v0.1.5/nimbo-0.1.5-darwin-x64.tar.gz"
+      sha256 "151db2c19371031c4eab247c1cbc48ff71bf2970e0887ac8c66bbe4b082aa95f"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/7sStudio/nimbo/releases/download/v0.1.4/nimbo-0.1.4-linux-arm64.tar.gz"
-      sha256 "454746f5404897b97cd10a4ab145bf74a41397cc85cecb171f522ed3b4a41859"
+      url "https://github.com/7sStudio/nimbo/releases/download/v0.1.5/nimbo-0.1.5-linux-arm64.tar.gz"
+      sha256 "8826252539b49b3b548e80de3e5ad6c9439c2de6cfc53c7fc8ecd6840490b119"
     end
     on_intel do
-      url "https://github.com/7sStudio/nimbo/releases/download/v0.1.4/nimbo-0.1.4-linux-x64.tar.gz"
-      sha256 "7257adc679e167d099fad8217fa932108429d10b8d9a352bd88b341d4488499e"
+      url "https://github.com/7sStudio/nimbo/releases/download/v0.1.5/nimbo-0.1.5-linux-x64.tar.gz"
+      sha256 "605c7092a6a4ef4fe537400c614589ef0a8704b7921a2ec0c7a7b45142b6061c"
     end
   end
 
